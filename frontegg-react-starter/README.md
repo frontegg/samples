@@ -6,7 +6,5 @@ export FRONTEGG_API_KEY=[YOUR-API-KEY]
 run:
 
 npm install
-
 npm run build
-
 npm start
