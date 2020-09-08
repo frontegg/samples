@@ -43,7 +43,7 @@ app.use('/frontegg', frontegg({
 
 app.post('/auth/saml/callback', (req, res) => {
   console.log('got to saml callback');
-  res.redirect(`http://localhost:3000/auth/saml/callback?SAMLResponse=${encodeURI(req.body.SAMLResponse)}&RelayState=${encodeURI(req.body.RelayState)}`)
+  res.redirect(`http://localhost:3000/auth/saml/callback?SAMLResponse=${encodeURIComponent(req.body.SAMLResponse)}&RelayState=${encodeURIComponent(req.body.RelayState)}`);
 })
 
 var httpServer = http.createServer(app);
