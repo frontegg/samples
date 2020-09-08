@@ -1,7 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { withFrontegg } from './withFrontegg';
+import { Route, Switch } from "react-router";
+import { Team, SsoConfiguration } from '@frontegg/react';
 import {
   Collapse,
   Navbar,
@@ -23,12 +24,15 @@ function App() {
   return (
     <div className="App">
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">Frontegg Secure Access</NavbarBrand>
         <NavbarToggler />
         <Collapse navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <NavLink href="/team">Team Management</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/sso">SSO Configuration</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
@@ -54,6 +58,19 @@ function App() {
           {isAuthenticated ? <NavbarText>Logged in expires: {user?.expires}</NavbarText> : <NavbarText>Not logged in</NavbarText>}
         </Collapse>
       </Navbar>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            Welcome!
+          </Route>
+          <Route path="/team">
+            <Team />
+          </Route>
+          <Route exact path="/sso">
+            <SsoConfiguration />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
