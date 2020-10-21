@@ -16,6 +16,8 @@ This repository is a sample ```create react app``` repository with Frontegg Auth
 
 ```bash
 npm install
+export FRONTEGG_CLIENT_ID=[THE CLIENT ID FROM THE FRONTEGG PORTAL]
+export FRONTEGG_API_KEY=[THE API KEY FROM THE FRONTEGG PORTAL]
 ```
 
 ## Usage
