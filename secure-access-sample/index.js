@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { frontegg, FronteggPermissions } = require('@frontegg/client');
+const { frontegg, FronteggPermissions, withAuthentication } = require('@frontegg/client');
 var fs = require('fs');
 
 var http = require('http');
@@ -28,14 +28,15 @@ app.use(bodyParser.json());
 app.use('/frontegg', frontegg({
   clientId,
   apiKey,
+  authMiddleware: withAuthentication(),
   contextResolver: async (req) => {
     const permissions = [
       FronteggPermissions.All,
     ];
 
     return {
-      tenantId,
-      userId,
+      tenantId: req.user ? req.user.tenantId : 'invalid-tenant-id',
+      userId: req.user ? req.user.id : null,
       permissions
     }
   }

@@ -15,12 +15,30 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
 } from 'reactstrap';
-import { useAuth } from '@frontegg/react-auth';
+import { Profile, ProtectedRoute, useAuth } from '@frontegg/react-auth';
+
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
+import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism';
+
+SyntaxHighlighter.registerLanguage('jsx', jsx);
+
+const Component = () => {
+  const codeString =
+    `<ProtectedRoute path="/team">
+  <Team />
+</ProtectedRoute>`;
+  return (
+    <SyntaxHighlighter language="jsx" style={prism} customStyle={{ width: '400px', margin: 'auto' }}>
+      {codeString}
+    </SyntaxHighlighter>
+  );
+};
 
 function App() {
   const { user, isAuthenticated } = useAuth();
+
   return (
     <div className="App">
       <Navbar color="light" light expand="md">
@@ -34,41 +52,60 @@ function App() {
             <NavItem>
               <NavLink href="/sso">SSO Configuration</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem href="/account/logout">
-                  Logout
-                </DropdownItem>
-                <DropdownItem href="/account/login">
-                  Login
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
-          {isAuthenticated ? <NavbarText>Logged in expires: {user?.expires}</NavbarText> : <NavbarText>Not logged in</NavbarText>}
+          <Navbar>
+            <Nav className="mr-auto" navbar>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {isAuthenticated ?
+                    <>
+                      <img style={{ width: '24px', marginRight: '5px', marginTop: '-5px', borderRadius: '15px' }} alt="profile" src={user?.profilePictureUrl} />
+                      <span>{user?.name}</span>
+                    </> : 'Not logged in'}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  {isAuthenticated && <DropdownItem href="/profile">
+                    Profile
+                    </DropdownItem>
+                  }
+                  {isAuthenticated ?
+                    <DropdownItem href="/account/logout">
+                      Logout
+                    </DropdownItem>
+                    :
+                    <DropdownItem href="/account/login">
+                      Login
+                    </DropdownItem>
+                  }
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Navbar>
+          {/* {isAuthenticated ? <NavbarText>Logged in expires: {user?.expires}</NavbarText> : <NavbarText>Not logged in</NavbarText>} */}
         </Collapse>
       </Navbar>
       <div>
         <Switch>
           <Route exact path="/">
+            <br />
+            <br />
+            <br />
             Welcome!
+
+            This is a public page which doesn't require authentication<br />
+            In order to protect a page and route with authentication use the following: <br /><br /><br />
+
+            <Component style={{ width: '400px' }} />
           </Route>
-          <Route path="/team">
+          <ProtectedRoute path="/profile">
+            <Profile.Page />
+          </ProtectedRoute>
+          <ProtectedRoute path="/team">
             <Team />
-          </Route>
-          <Route exact path="/sso">
-            <SsoConfiguration />
-          </Route>
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/sso">
+            <SsoConfiguration rootDir="/sso" />
+          </ProtectedRoute>
         </Switch>
       </div>
     </div>

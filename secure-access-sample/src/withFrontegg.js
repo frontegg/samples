@@ -25,7 +25,6 @@ const plugins = [
  */
 export const withFrontegg = (AppComponent) => (props) => {
   return <FronteggProvider
-    withRouter={true}
     plugins={plugins}
     context={contextOptions}
     uiLibrary={uiLibrary}>
