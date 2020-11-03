@@ -1,16 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
-import { LoginPage } from '@frontegg/react-auth';
+import { ForgotPasswordPage } from '@frontegg/react-auth';
+
 const isSSR = typeof window === 'undefined';
 
-function Login() {
+function ForgotPassword() {
   return <div>
     <Head>
-      <title>Login</title>
+      <title>ForgotPassword</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    {!isSSR && <LoginPage />}
+    {!isSSR && <ForgotPasswordPage />}
   </div>;
 }
 
-export default Login;
+export default ForgotPassword;

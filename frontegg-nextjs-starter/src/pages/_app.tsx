@@ -38,7 +38,7 @@ export default function MyApp(props: MyAppProps) {
     }
   }, []);
 
-  const Component = useMemo(() => withFrontegg(props.Component), [isSSR, props]);
+  const Component = withFrontegg(props.Component);
 
   return <>
     <Head>
