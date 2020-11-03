@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { withFrontegg } from '../../components/withFrontegg';
 
 function Login() {
   return <div>
@@ -11,4 +10,4 @@ function Login() {
   </div>;
 }
 
-export default withFrontegg(Login);
+export default Login;

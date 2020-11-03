@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { withFrontegg } from '../../components/withFrontegg';
 
 function Logout() {
   return <div>
@@ -11,4 +10,4 @@ function Logout() {
   </div>;
 }
 
-export default withFrontegg(Logout);
+export default Logout;

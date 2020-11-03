@@ -1,7 +1,10 @@
-import React, { ElementType } from 'react';
+import React, { Component, ElementType, useMemo } from 'react';
 import Head from 'next/head';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
+import { withFrontegg } from '../components/withFrontegg';
+
+const isSSR = typeof window === 'undefined';
 
 interface MyAppProps {
   Component: ElementType
@@ -27,13 +30,15 @@ const theme = createMuiTheme({
 });
 
 export default function MyApp(props: MyAppProps) {
-  const { Component, pageProps } = props;
+  const { pageProps } = props;
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
+  const Component = useMemo(() => withFrontegg(props.Component), [isSSR, props]);
 
   return <>
     <Head>

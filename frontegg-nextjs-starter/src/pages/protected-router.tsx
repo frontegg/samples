@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ProtectedComponent } from '@frontegg/react-auth';
 import Head from 'next/head';
 const isSSR = typeof window === 'undefined';
 

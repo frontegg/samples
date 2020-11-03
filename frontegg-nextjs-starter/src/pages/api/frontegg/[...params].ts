@@ -1,8 +1,9 @@
-import { FronteggPermissions, fronteggNextJs } from '@frontegg/client';
+import { FronteggPermissions } from '@frontegg/client';
+import { fronteggNextJs } from '@frontegg/client/dist/src/middleware';
 import jwt_decode from 'jwt-decode';
 
-const FRONTEGG_CLIENT_ID = '93447df4-edcc-45e5-8664-9fb8c196cf44';
-const FRONTEGG_API_KEY = '71e8ca5a-3786-4d1b-8fcd-a111d07c7bc2';
+const FRONTEGG_CLIENT_ID = '[FRONTEGG_CLIENT_ID]';
+const FRONTEGG_API_KEY = '[FRONTEGG_API_KEY]';
 
 const tenantId = process.env.TENANT_ID || 'my-tenant-id';
 const userId = 'my-user-id';
