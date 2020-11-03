@@ -1,5 +1,4 @@
-import { FronteggPermissions } from '@frontegg/client';
-import { fronteggNextJs } from '@frontegg/client/dist/src/middleware';
+import { FronteggPermissions, fronteggNextJs } from '@frontegg/client';
 import jwt_decode from 'jwt-decode';
 
 const FRONTEGG_CLIENT_ID = '[FRONTEGG_CLIENT_ID]';
@@ -12,6 +11,7 @@ export default fronteggNextJs({
   prefixRoute: '/api/frontegg',
   apiKey: FRONTEGG_API_KEY,
   clientId: FRONTEGG_CLIENT_ID,
+  cookieDomainRewrite: 'localhost',
   contextResolver: async (req) => {
     let requestUserId = userId;
     let requestTenantId = tenantId;
