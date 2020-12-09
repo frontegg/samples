@@ -1,0 +1,20 @@
+<div class="app-home-container">
+  <h1>Home Page</h1>
+
+  <ng-container *ngIf="authService.isAuthenticated$ | async">
+    Logged In user
+
+    <button (click)="logout()">Logout</button>
+  </ng-container>
+  <br />
+
+  <ng-container *ngIf="authService.user$ | async as user">
+    {{ user.email }}
+  </ng-container>
+
+  <br/><br/><a routerLink="/profile" routerLinkActive="active">Profile</a>
+  <br/><br/><a routerLink="/sso" routerLinkActive="active">SSO</a>
+  <br/><br/><a routerLink="/connectivity" routerLinkActive="active">Connectivity</a>
+  <br/><br/><a routerLink="/team" routerLinkActive="active">Team</a>
+  <br/><br/><a routerLink="/audits" routerLinkActive="active">Audits</a>
+</div>
