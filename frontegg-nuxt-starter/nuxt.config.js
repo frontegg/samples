@@ -53,7 +53,7 @@ export default {
 
   frontegg: {
     contextOptions: {
-      baseUrl: 'https://david.frontegg.com'
+      baseUrl: 'https://loudapi.frontegg.com'
     },
     headerImage: 'https://download.logo.wine/logo/Google/Google-Logo.wine.png',
     customLoader: false

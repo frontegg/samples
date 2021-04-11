@@ -14,7 +14,7 @@ const contextOptions = {
 const plugins = [
   // add frontegg plugin here
   AuthPlugin({
-    samlCallbackUrl: '/auth/saml/callback'
+    headerImg: 'https://freepikpsd.com/wp-content/uploads/2019/10/generic-company-logo-png-3-Transparent-Images-Free.png'
     /* auth options, find more information at https://github.com/frontegg/frontegg-react/tree/master/packages/auth */
   })
 ];

@@ -24,7 +24,7 @@ import { AuditsModule } from '@frontegg/ng-audits';
         requestCredentials: 'include',
       },
     }),
-    AuthModule.forRoot(),
+    AuthModule.forRoot({}),
     AuditsModule.forRoot(),
     ConnectivityModule.forRoot(),
 

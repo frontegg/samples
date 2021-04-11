@@ -25,6 +25,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use('/shift', withAuthentication());
+app.use('/admins', withAuthentication({ roles: ['admin'] }));
+
 app.use('/frontegg', frontegg({
   clientId,
   apiKey,

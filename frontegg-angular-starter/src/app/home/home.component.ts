@@ -10,14 +10,8 @@ export class HomeComponent implements OnInit {
   JSON = JSON;
 
   constructor(public authService: AuthService) {
-    // authService.isAuthenticated
+    this.user = authService.user$;
   }
 
-  logout(): void {
-    this.authService.actions.logout(() => {
-      window.location.href = '/account/logout';
-    });
-  }
-
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

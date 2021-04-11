@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { withFrontegg } from './withFrontegg';
 import { Route, Switch } from "react-router";
-import { Team, SsoConfiguration } from '@frontegg/react';
+import { SsoConfiguration } from '@frontegg/react';
 import {
   Collapse,
   Navbar,
@@ -16,11 +16,12 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import { Profile, ProtectedRoute, useAuth } from '@frontegg/react-auth';
+import { Profile, ProtectedRoute, useAuth, Team } from '@frontegg/react-auth';
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
 import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism';
+import TeamWrapper from './TeamWrapper';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 
@@ -101,7 +102,7 @@ function App() {
             <Profile.Page />
           </ProtectedRoute>
           <ProtectedRoute path="/team">
-            <Team />
+            <TeamWrapper />
           </ProtectedRoute>
           <ProtectedRoute exact path="/sso">
             <SsoConfiguration rootDir="/sso" />

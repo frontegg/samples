@@ -8,6 +8,7 @@
       <NuxtLink to="/test">Go To Test Component</NuxtLink>
       <br/>
       <br/>
+      <h1>Logged In: {{ userEmail }}</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -28,6 +29,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { openAdminPortal } from '@frontegg/vue'
+import { isAuthenticatedGuard, mapAuthActions } from '@frontegg/vue'
 
 export default Vue.extend({
 
@@ -35,7 +37,17 @@ export default Vue.extend({
     openAdminPortal () {
       openAdminPortal()
     }
-  }
+  },
+  data () {
+    return {
+      ...this.mapAuthState(),
+    }
+  },
+  computed: {
+    userEmail() {
+      return this.authState.user?.email ?? 'Not Logged In'
+    },
+  },
 })
 </script>
 
