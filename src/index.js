@@ -4,10 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { FronteggProvider } from '@frontegg/react';
+
+const contextOptions = {
+  baseUrl: 'https://test-app2.frontegg.com',
+};
+const headerImage = 'https://assets.frontegg.com/public-frontegg-assets/acme-logo.svg';
+
 ReactDOM.render(
-  <React.StrictMode>
+  <FronteggProvider contextOptions={contextOptions} headerImage={headerImage}>
     <App />
-  </React.StrictMode>,
+  </FronteggProvider>,
   document.getElementById('root')
 );
 
